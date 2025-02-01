@@ -1,0 +1,111 @@
+package prueba.bisa.pruebablogs.models;
+
+import java.util.Date;
+import java.util.Objects;
+
+public class Autor {
+
+    private Integer id;
+    private String Nombre;
+    private String ApellidoPaterno;
+    private String ApellidoMaterna;
+    private Date fechaNacimiento;
+    private String PaisResidencia;
+    private String correo;
+    private static int ultimoId;
+
+    public Autor() {
+        this.id = ++ultimoId;
+    }
+
+    public Autor(String nombre, String apellidoPaterno, String apellidoMaterna, Date fechaNacimiento, String paisResidencia, String correo) {
+        this();
+        this.Nombre = nombre;
+        this.ApellidoPaterno = apellidoPaterno;
+        this.ApellidoMaterna = apellidoMaterna;
+        this.fechaNacimiento = fechaNacimiento;
+        this.PaisResidencia = paisResidencia;
+        this.correo = correo;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String nombre) {
+        Nombre = nombre;
+    }
+
+    public String getApellidoPaterno() {
+        return ApellidoPaterno;
+    }
+
+    public void setApellidoPaterno(String apellidoPaterno) {
+        ApellidoPaterno = apellidoPaterno;
+    }
+
+    public String getApellidoMaterna() {
+        return ApellidoMaterna;
+    }
+
+    public void setApellidoMaterna(String apellidoMaterna) {
+        ApellidoMaterna = apellidoMaterna;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getPaisResidencia() {
+        return PaisResidencia;
+    }
+
+    public void setPaisResidencia(String paisResidencia) {
+        PaisResidencia = paisResidencia;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "Nombre='" + Nombre + '\'' +
+                ", ApellidoPaterno='" + ApellidoPaterno + '\'' +
+                ", ApellidoMaterna='" + ApellidoMaterna + '\'' +
+                ", fechaNacimiento=" + fechaNacimiento +
+                ", PaisResidencia='" + PaisResidencia + '\'' +
+                ", correo='" + correo + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Autor cliente = (Autor) o;
+        return Objects.equals(id, cliente.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+}
