@@ -1,17 +1,17 @@
 package prueba.bisa.pruebablogs.controllers;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import prueba.bisa.pruebablogs.models.Blog;
+import prueba.bisa.pruebablogs.config.ControlException;
 import prueba.bisa.pruebablogs.models.Comentario;
 import prueba.bisa.pruebablogs.models.request.ComentarioRequest;
-import prueba.bisa.pruebablogs.services.BlogsService;
 import prueba.bisa.pruebablogs.services.ComentarioService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("v1/comentario")
-public class ComentarioController {
+public class ComentarioController extends ControlException {
 
 
     private final ComentarioService comentarioService;
@@ -21,8 +21,8 @@ public class ComentarioController {
     }
 
     @PostMapping("crearComentario")
-    public Comentario crearComentario(@RequestBody ComentarioRequest comentario) {
-        return comentarioService.crearComentario(comentario);
+    public ResponseEntity<Comentario> crearComentario(@RequestBody ComentarioRequest comentario) {
+        return ResponseEntity.ok(comentarioService.crearComentario(comentario));
     }
 
     @GetMapping("lista")

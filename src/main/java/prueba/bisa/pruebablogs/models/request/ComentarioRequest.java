@@ -1,15 +1,29 @@
 package prueba.bisa.pruebablogs.models.request;
 
+import jakarta.validation.constraints.*;
 import prueba.bisa.pruebablogs.models.Blog;
 import prueba.bisa.pruebablogs.models.Usuario;
 
 public class ComentarioRequest {
 
+    @NotNull(message = "El nombre no puede ser nulo")
+    @Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 caracteres")
     private String nombre;
+
+    @NotNull(message = "El correo no puede ser nulo")
+    @Email(message = "El correo debe tener un formato válido")
     private String correo;
+
     private String pais;
+
+    @NotNull(message = "El id del blog no puede ser nulo")
     private Integer idBlog;
+
     private String comentario;
+
+    @NotNull(message = "La puntuación no puede ser nula")
+    @Min(value = 0, message = "La puntuación debe ser mínimo 0")
+    @Max(value = 10, message = "La puntuación debe ser máximo 10")
     private Integer puntuacion;
 
     public ComentarioRequest(String nombre, String correo, String pais, Integer idBlog, String comentario, Integer puntuacion) {

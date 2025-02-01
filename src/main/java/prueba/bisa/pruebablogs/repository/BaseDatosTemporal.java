@@ -11,11 +11,13 @@ public class BaseDatosTemporal {
 
     private List<Autor> autores;
     private List<Blog> blogs;
+    private List<Blog> blogsHistorial;
     private List<Usuario> usuarios;
     private List<Comentario> comentarios;
 
     public BaseDatosTemporal() {
         this.autores = new ArrayList<>();
+        this.blogsHistorial =  new ArrayList<>();
         this.blogs =  new ArrayList<>();
         this.usuarios =  new ArrayList<>();
         this.comentarios =  new ArrayList<>();
@@ -48,21 +50,28 @@ public class BaseDatosTemporal {
 
     // PARA BLOGS
 
-    public Blog crearBlogs(Blog autor){
-        if(blogs.add(autor)){
-            return autor;
+    public Blog crearBlogs(Blog blog){
+        registrarBlogHistorial(blog);
+        if(blogs.add(blog)){
+            return blog;
         }else {
             return null;
         }
     }
 
-    public Blog editarBlogs(Blog autor){
-        Blog c = this.porIdBlog(autor.getId());
-        c.setAutor(autor.getAutor());
-        c.setTema(autor.getTema());
-        c.setComentario(autor.getComentario());
-        c.setPeriodicidadBlog(autor.getPeriodicidadBlog());
-        return autor;
+    public Blog editarBlogs(Blog blog){
+        blog.setUpdateData(new Date());
+        registrarBlogHistorial(blog);
+        Blog c = this.porIdBlog(blog.getId());
+        c.setAutor(blog.getAutor());
+        c.setTema(blog.getTema());
+        c.setComentario(blog.getComentario());
+        c.setPeriodicidadBlog(blog.getPeriodicidadBlog());
+        return blog;
+    }
+
+    public void registrarBlogHistorial(Blog blog){
+        blogsHistorial.add(blog);
     }
 
     public List<Blog> ListaBlogs(){

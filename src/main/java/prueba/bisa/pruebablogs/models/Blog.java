@@ -2,18 +2,31 @@ package prueba.bisa.pruebablogs.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import prueba.bisa.pruebablogs.models.enumModels.PeriodicidadBlog;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Blog {
 
     private Integer id;
+
+    @NotNull(message = "El autor no puede ser nulo")
     private Autor autor;
+
+    @NotNull(message = "El tema no puede ser nulo")
+    @Size(min = 3, max = 100, message = "El tema debe tener entre 3 y 100 caracteres")
     private String tema;
+
+    @NotNull(message = "La periodicidad del blog no puede ser nula")
     private PeriodicidadBlog periodicidadBlog;
+
     private Boolean comentario;
     private static int ultimoId;
+
+    private Date updateData;
 
     public Blog() {
         this.id = ++ultimoId;
@@ -75,6 +88,14 @@ public class Blog {
 
     public void setComentario(Boolean comentario) {
         this.comentario = comentario;
+    }
+
+    public Date getUpdateData() {
+        return updateData;
+    }
+
+    public void setUpdateData(Date updateData) {
+        this.updateData = updateData;
     }
 
     @Override

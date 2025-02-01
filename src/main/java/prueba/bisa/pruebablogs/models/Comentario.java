@@ -1,13 +1,27 @@
 package prueba.bisa.pruebablogs.models;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.util.Objects;
 
 public class Comentario {
 
     private Integer id;
+
+    @NotNull(message = "El blog no puede ser nulo")
     private Blog blog;
+
+    @NotNull(message = "El usuario no puede ser nulo")
     private Usuario usuario;
+
     private String comentario;
+
+    @NotNull(message = "La puntuación no puede ser nula")
+    @Min(value = 0, message = "La puntuación debe ser mínimo 0")
+    @Max(value = 10, message = "La puntuación debe ser máximo 10")
     private Integer puntuacion;
     private static int ultimoId;
 

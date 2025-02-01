@@ -1,13 +1,25 @@
 package prueba.bisa.pruebablogs.models.request;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import prueba.bisa.pruebablogs.models.enumModels.PeriodicidadBlog;
 
 public class BlogRequest {
 
+
+    @NotNull(message = "El id no puede ser nulo")
     private Integer id;
+
+    @NotNull(message = "El id del autor no puede ser nulo")
     private Integer idAutor;
+
+    @NotNull(message = "El tema no puede ser nulo")
+    @Size(min = 3, max = 100, message = "El tema debe tener entre 3 y 100 caracteres")
     private String tema;
+
+    @NotNull(message = "La periodicidad del blog no puede ser nula")
     private PeriodicidadBlog periodicidadBlog;
+
     private Boolean comentario;
 
     public BlogRequest(Integer id, Integer idAutor, String tema, PeriodicidadBlog periodicidadBlog, Boolean comentario) {

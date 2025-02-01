@@ -4,11 +4,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import prueba.bisa.pruebablogs.models.Autor;
+import prueba.bisa.pruebablogs.config.ControlException;
 import prueba.bisa.pruebablogs.models.Blog;
-import prueba.bisa.pruebablogs.models.Comentario;
 import prueba.bisa.pruebablogs.models.request.BlogRequest;
-import prueba.bisa.pruebablogs.models.request.ComentarioRequest;
 import prueba.bisa.pruebablogs.services.BlogsService;
 
 import java.util.List;
@@ -16,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("v1/blogs")
-public class BlogsController {
+public class BlogsController extends ControlException {
 
 
     private final BlogsService blogsService;

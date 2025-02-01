@@ -8,14 +8,28 @@ import java.util.Objects;
 public class Autor {
 
     private Integer id;
-    @NotNull(message = "El nombre no puede estar vacío")
+
+    @NotNull(message = "El nombre no puede estar nulo")
+    @NotEmpty(message = "El nombre no puede estar vacío")
     private String Nombre;
+
+    @NotNull(message = "El apellido paterno no puede ser nulo")
+    @NotEmpty(message = "El apellido paterno no puede estar vacío")
     private String ApellidoPaterno;
+
+    @NotNull(message = "El apellido materno no puede ser nulo")
+    @NotEmpty(message = "El apellido materno no puede estar vacío")
     private String ApellidoMaterna;
-    @NotNull(message = "La fecha no puede estar vacío")
+
+    @NotNull(message = "La fecha no puede estar nulo")
+    @NotEmpty(message = "La fecha no puede estar vacío")
     private Date fechaNacimiento;
+
     private String PaisResidencia;
+
+    @Email(message = "El correo electrónico debe tener un formato válido")
     private String correo;
+
     private static int ultimoId;
 
     public Autor() {

@@ -1,5 +1,6 @@
 package prueba.bisa.pruebablogs.services;
 import org.springframework.stereotype.Service;
+import prueba.bisa.pruebablogs.Exceptions.RegistroNoPermitidoException;
 import prueba.bisa.pruebablogs.models.Autor;
 import prueba.bisa.pruebablogs.models.Blog;
 import prueba.bisa.pruebablogs.models.Comentario;
@@ -9,6 +10,7 @@ import prueba.bisa.pruebablogs.models.request.ComentarioRequest;
 import prueba.bisa.pruebablogs.repository.RepositoryImp;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BlogsService {
@@ -33,8 +35,11 @@ public class BlogsService {
 
     public Blog actualizarBlogs(BlogRequest blogEdit) {
 
-        Autor autor = autorService.porIdAutor(blogEdit.getIdAutor());
-        return repository.editar(new Blog(blogEdit.getId(),autor, blogEdit.getTema(), blogEdit.getPeriodicidadBlog(), blogEdit.getComentario()));
+        Optional<Autor> autor = Optional.ofNullable(autorService.porIdAutor(blogEdit.getIdAutor()));
+        if(!autor.isPresent()){
+            throw new RegistroNoPermitidoException("No existe un autor registrado.");
+        }
+        return repository.editar(new Blog(blogEdit.getId(),autor.get(), blogEdit.getTema(), blogEdit.getPeriodicidadBlog(), blogEdit.getComentario()));
     }
 
     public Blog consultarBlogs(Blog blog) {
