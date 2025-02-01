@@ -1,6 +1,8 @@
 package prueba.bisa.pruebablogs.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import prueba.bisa.pruebablogs.models.Autor;
 import prueba.bisa.pruebablogs.models.Blog;
@@ -21,8 +23,8 @@ public class AutorController {
 
     @Operation(summary = "Crea un nuevo autor", description = "Crea un nuevo autor")
     @PostMapping("crearAutor")
-    public Autor crearAutor(@RequestBody NuevoAutorRequest nuevoAutorRequest) {
-        return autorService.crearNuevoAutor(nuevoAutorRequest);
+    public ResponseEntity<Autor> crearAutor(@Valid @RequestBody NuevoAutorRequest nuevoAutorRequest) {
+        return ResponseEntity.ok(autorService.crearNuevoAutor(nuevoAutorRequest));
     }
 
 

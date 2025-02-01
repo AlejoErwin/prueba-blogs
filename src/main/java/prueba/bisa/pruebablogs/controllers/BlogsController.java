@@ -8,6 +8,7 @@ import prueba.bisa.pruebablogs.models.Autor;
 import prueba.bisa.pruebablogs.models.Blog;
 import prueba.bisa.pruebablogs.models.Comentario;
 import prueba.bisa.pruebablogs.models.request.BlogRequest;
+import prueba.bisa.pruebablogs.models.request.ComentarioRequest;
 import prueba.bisa.pruebablogs.services.BlogsService;
 
 import java.util.List;
@@ -37,9 +38,9 @@ public class BlogsController {
         return blogsService.actualizarBlogs(blog);
     }
 
-    @GetMapping("consultarBlogs")
-    public Blog consultarBlogs(@RequestBody Blog blog) {
-        return blogsService.consultarBlogs(blog);
+    @GetMapping("blogId/{id}")
+    public Blog consultarBlogs(@PathVariable(name = "id") Integer id) {
+        return blogsService.porIdBlog(id);
     }
 
     @Operation(summary = "Obtiene todos los blogs creados", description = "Obtiene todos los blogs creados")
@@ -49,8 +50,4 @@ public class BlogsController {
     }
 
 
-    @PostMapping("crearComentario")
-    public Autor crearComentario(@RequestBody Comentario comentario) {
-        return blogsService.crearComentario(comentario);
-    }
 }

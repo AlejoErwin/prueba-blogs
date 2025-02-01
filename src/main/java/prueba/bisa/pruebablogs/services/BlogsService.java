@@ -3,7 +3,9 @@ import org.springframework.stereotype.Service;
 import prueba.bisa.pruebablogs.models.Autor;
 import prueba.bisa.pruebablogs.models.Blog;
 import prueba.bisa.pruebablogs.models.Comentario;
+import prueba.bisa.pruebablogs.models.Usuario;
 import prueba.bisa.pruebablogs.models.request.BlogRequest;
+import prueba.bisa.pruebablogs.models.request.ComentarioRequest;
 import prueba.bisa.pruebablogs.repository.RepositoryImp;
 
 import java.util.List;
@@ -40,10 +42,12 @@ public class BlogsService {
     }
 
 
-
-    public Autor crearComentario(Comentario comentario) {
-        return null;
+    public Blog porIdBlog(Integer id) {
+        return repository.porId(id);
     }
+
+
+
 
 
 }

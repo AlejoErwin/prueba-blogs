@@ -1,14 +1,18 @@
 package prueba.bisa.pruebablogs.models;
 
+import jakarta.validation.constraints.*;
+
 import java.util.Date;
 import java.util.Objects;
 
 public class Autor {
 
     private Integer id;
+    @NotNull(message = "El nombre no puede estar vacío")
     private String Nombre;
     private String ApellidoPaterno;
     private String ApellidoMaterna;
+    @NotNull(message = "La fecha no puede estar vacío")
     private Date fechaNacimiento;
     private String PaisResidencia;
     private String correo;

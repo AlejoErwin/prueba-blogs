@@ -1,8 +1,7 @@
 package prueba.bisa.pruebablogs.repository;
 
 import org.springframework.stereotype.Component;
-import prueba.bisa.pruebablogs.models.Autor;
-import prueba.bisa.pruebablogs.models.Blog;
+import prueba.bisa.pruebablogs.models.*;
 
 import java.util.*;
 
@@ -12,10 +11,14 @@ public class BaseDatosTemporal {
 
     private List<Autor> autores;
     private List<Blog> blogs;
+    private List<Usuario> usuarios;
+    private List<Comentario> comentarios;
 
     public BaseDatosTemporal() {
         this.autores = new ArrayList<>();
         this.blogs =  new ArrayList<>();
+        this.usuarios =  new ArrayList<>();
+        this.comentarios =  new ArrayList<>();
     }
 
     public Autor crearAutor(Autor autor){
@@ -28,9 +31,6 @@ public class BaseDatosTemporal {
 
 
     public List<Autor> ListaAutor(){
-        for (Autor autor: autores) {
-            System.out.println(autor);
-        }
         return autores;
     }
 
@@ -66,9 +66,6 @@ public class BaseDatosTemporal {
     }
 
     public List<Blog> ListaBlogs(){
-        for (Blog blog: blogs) {
-            System.out.println(blog);
-        }
         return blogs;
     }
 
@@ -82,4 +79,28 @@ public class BaseDatosTemporal {
         }
         return resultado;
     }
+
+    // PARA USUARIOS
+
+    public Usuario crearUsuario(Usuario usuario){
+        if(usuarios.add(usuario)){
+            return usuario;
+        }else {
+            return null;
+        }
+    }
+
+    // PARA EL COMENTARIO
+    public Comentario crearComentario(Comentario comentario){
+        if(comentarios.add(comentario)){
+            return comentario;
+        }else {
+            return null;
+        }
+    }
+
+    public List<Comentario> listaComentario(){
+        return comentarios;
+    }
+
 }

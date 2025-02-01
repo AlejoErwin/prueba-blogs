@@ -1,10 +1,17 @@
 package prueba.bisa.pruebablogs.models.request;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.util.Date;
 
 public class NuevoAutorRequest {
+
+    @NotNull(message = "El nombre no puede estar vacío")
     private String Nombre;
+
+    @NotNull(message = "El apellido paterno no puede estar vacío")
     private String ApellidoPaterno;
+
     private String ApellidoMaterna;
     private Date fechaNacimiento;
     private String PaisResidencia;
